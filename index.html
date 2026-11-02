@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marketing Studio</title>
+  <meta name="description" content="Campaign briefs, brand voice checks, budget planning, competitor snapshots and ad copy testing, with the working shown.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FF2E88'/%3E%3Cpath d='M8 23V9h4l4 7 4-7h4v14h-3.5V15l-4.5 7.5h-1L11.500 15v8z' fill='%23150F1E'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-tool="brief">
+  <a class="skip" href="#workspace">Skip to the tools</a>
+
+  <header class="bar">
+    <a class="logo" href="#top" aria-label="Marketing Studio home">Marketing Studio</a>
+    <nav class="tabs" aria-label="Tools">
+      <button type="button" data-tool="brief">Campaign brief</button>
+      <button type="button" data-tool="voice">Brand voice</button>
+      <button type="button" data-tool="budget">Budget planner</button>
+      <button type="button" data-tool="competitor">Competitor snapshot</button>
+      <button type="button" data-tool="lab">Ad copy lab</button>
+    </nav>
+    <button type="button" class="brand-btn" id="brand-open"><span class="dot" id="brand-dot" aria-hidden="true"></span>Your brand</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1><span>Marketing tools</span><span>that show</span><span>their working.</span></h1>
+      <p class="lede">Briefs, voice checks, budgets, competitor snapshots and ad copy. The AI writes the words. The numbers come from you, and every claim about a competitor points to its source.</p>
+
+      <nav class="index" aria-label="Pick a tool">
+        <button type="button" class="row" data-tool="brief" style="--c:#FF2E88">
+          <span class="row-name">Campaign brief</span>
+          <span class="row-desc">Positioning, messages, channel split in rupees, calendar and KPIs</span>
+        </button>
+        <button type="button" class="row" data-tool="voice" style="--c:#FFD23F">
+          <span class="row-name">Brand voice</span>
+          <span class="row-desc">Measure your copy, then see where it drifts from your tone</span>
+        </button>
+        <button type="button" class="row" data-tool="budget" style="--c:#46E0B0">
+          <span class="row-name">Budget planner</span>
+          <span class="row-desc">Spend to leads to customers, using only your own assumptions</span>
+        </button>
+        <button type="button" class="row" data-tool="competitor" style="--c:#6C86FF">
+          <span class="row-name">Competitor snapshot</span>
+          <span class="row-desc">Their homepage and last 30 days of news, with sources listed</span>
+        </button>
+        <button type="button" class="row" data-tool="lab" style="--c:#FF7A3D">
+          <span class="row-name">Ad copy lab</span>
+          <span class="row-desc">Variants by angle, platform limits checked, your picks charted</span>
+        </button>
+      </nav>
+    </section>
+
+    <section id="workspace" class="workspace" tabindex="-1">
+      <noscript><p class="msg error">This site needs JavaScript. Turn it on in your browser and reload.</p></noscript>
+
+      <!-- ============ Campaign brief ============ -->
+      <section class="panel" id="panel-brief" aria-labelledby="h-brief" hidden>
+        <header class="panel-head">
+          <h2 id="h-brief">Campaign brief</h2>
+          <p>Describe what you are promoting. You get a one-page plan you can hand to a team.</p>
+        </header>
+        <div class="work">
+          <form id="brief-form" class="form" novalidate>
+            <label>Product or service
+              <textarea name="product" rows="3" maxlength="3000" placeholder="Leave empty to use what you saved under Your brand"></textarea>
+            </label>
+            <label>Target audience
+              <textarea name="audience" rows="3" maxlength="3000" placeholder="Who are they? Age, city, what they care about"></textarea>
+            </label>
+            <div class="two">
+              <label>Main goal <select name="goal" id="brief-goal"></select></label>
+              <label>Total budget (₹) <input type="number" name="budget" min="1000" step="5000" value="100000"></label>
+            </div>
+            <label><span>Duration: <output id="weeks-out">4 weeks</output></span>
+              <input type="range" name="weeks" min="1" max="26" value="4">
+            </label>
+            <fieldset>
+              <legend>Channels you can use</legend>
+              <div class="chips" id="brief-channels"></div>
+            </fieldset>
+            <label>Location focus (optional) <input type="text" name="geography" maxlength="200" placeholder="e.g. Mumbai, pan-India"></label>
+            <label>Anything else (optional) <input type="text" name="extra" maxlength="500" placeholder="e.g. launching in November, college students"></label>
+            <button class="btn" type="submit">Write the brief</button>
+          </form>
+          <div class="out" id="brief-out" aria-live="polite"><p class="empty">Your brief will appear here.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ Brand voice ============ -->
+      <section class="panel" id="panel-voice" aria-labelledby="h-voice" hidden>
+        <header class="panel-head">
+          <h2 id="h-voice">Brand voice</h2>
+          <p>Paste a caption, ad or email. The page measures it directly, and the AI judges how well it fits your voice.</p>
+        </header>
+        <div class="work">
+          <form id="voice-form" class="form" novalidate>
+            <label>Your copy
+              <textarea name="copy" rows="8" maxlength="3000" placeholder="Paste your caption, ad text, email or post here"></textarea>
+            </label>
+            <div class="two">
+              <label>Target voice <select name="voice" id="voice-select"></select></label>
+              <label>Where will it appear?
+                <select name="channel">
+                  <option>Instagram</option><option>LinkedIn</option><option>Facebook</option><option>Email</option>
+                  <option>Google ad</option><option>Website</option><option>WhatsApp</option><option>Other</option>
+                </select>
+              </label>
+            </div>
+            <label id="custom-voice-wrap" hidden>Describe your voice
+              <input type="text" name="customVoice" maxlength="400" placeholder="e.g. witty but trustworthy, like a smart older sibling">
+            </label>
+            <button class="btn" type="submit">Check my copy</button>
+          </form>
+          <div class="out" id="voice-out" aria-live="polite"><p class="empty">Results will appear here.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ Budget planner ============ -->
+      <section class="panel" id="panel-budget" aria-labelledby="h-budget" hidden>
+        <header class="panel-head">
+          <h2 id="h-budget">Budget planner</h2>
+          <p>Split a budget across channels and see the leads, customers and revenue it could produce. This is plain maths on your numbers, with no AI involved.</p>
+        </header>
+        <p class="msg info">The numbers in the table are example assumptions, not market benchmarks. Replace them with your own, from past campaigns or the ad platform's planner.</p>
+        <div class="budget-top">
+          <label>Total budget (₹) <input type="number" id="bud-total" min="1000" step="10000" value="200000"></label>
+          <label>Revenue per customer (₹) <input type="number" id="bud-rev" min="0" step="100" value="3000"></label>
+          <label><span>What-if: change click-to-lead rate by <output id="bud-whatif-out">0%</output></span>
+            <input type="range" id="bud-whatif" min="-50" max="100" step="5" value="0">
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl edit" id="bud-table">
+            <thead>
+              <tr>
+                <th scope="col">Channel</th><th scope="col">Share %</th><th scope="col">Cost model</th>
+                <th scope="col">Unit cost (₹)</th><th scope="col">CTR %</th><th scope="col">Click to lead %</th>
+                <th scope="col">Lead to customer %</th><th scope="col"><span class="sr">Remove</span></th>
+              </tr>
+            </thead>
+            <tbody id="bud-rows"></tbody>
+          </table>
+        </div>
+        <p class="hint">CPC is cost per click. CPM is cost per 1,000 views. CTR is the share of views that become clicks.</p>
+        <button type="button" class="btn ghost" id="bud-add">Add a channel</button>
+        <div class="out" id="budget-out" aria-live="polite"></div>
+      </section>
+
+      <!-- ============ Competitor snapshot ============ -->
+      <section class="panel" id="panel-competitor" aria-labelledby="h-competitor" hidden>
+        <header class="panel-head">
+          <h2 id="h-competitor">Competitor snapshot</h2>
+          <p>Enter a competitor and, if you have it, their website. The page reads their public homepage and the last 30 days of Google News headlines. The AI then summarises only what those sources say.</p>
+        </header>
+        <div class="work">
+          <form id="comp-form" class="form" novalidate>
+            <label>Competitor name <input type="text" name="name" maxlength="100" placeholder="e.g. Nykaa"></label>
+            <label>Website (optional) <input type="text" name="site" maxlength="300" placeholder="e.g. nykaa.com"></label>
+            <button class="btn" type="submit">Build the snapshot</button>
+          </form>
+          <div class="out" id="comp-out" aria-live="polite"><p class="empty">The snapshot and its sources will appear here.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ Ad copy lab ============ -->
+      <section class="panel" id="panel-lab" aria-labelledby="h-lab" hidden>
+        <header class="panel-head">
+          <h2 id="h-lab">Ad copy lab</h2>
+          <p>Generate ad variants with different angles, check the platform's length limits, then pick the one you would run. The chart shows which angles keep winning for you.</p>
+        </header>
+        <div class="work">
+          <form id="lab-form" class="form" novalidate>
+            <label>Product or offer
+              <textarea name="product" rows="3" maxlength="3000" placeholder="Leave empty to use Your brand"></textarea>
+            </label>
+            <label>Audience
+              <textarea name="audience" rows="3" maxlength="3000" placeholder="Leave empty to use Your brand"></textarea>
+            </label>
+            <div class="two">
+              <label>Platform <select name="platform" id="lab-platform"></select></label>
+              <label>Tone (optional) <input type="text" name="tone" maxlength="200" placeholder="e.g. cheeky, premium"></label>
+            </div>
+            <fieldset>
+              <legend>Angles (pick 3 to 5)</legend>
+              <div class="chips" id="lab-angles"></div>
+            </fieldset>
+            <button class="btn" type="submit">Write the variants</button>
+          </form>
+          <div class="out" id="lab-out" aria-live="polite"><p class="empty">Variants will appear here.</p></div>
+        </div>
+        <div class="out" id="lab-tally"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>AI can be wrong or generic. Check every claim before you publish. Do not type confidential or personal information. Your brand details stay in this browser only.</p>
+  </footer>
+
+  <dialog id="brand-dialog" aria-labelledby="brand-title">
+    <form method="dialog" id="brand-form" class="form">
+      <h2 id="brand-title">Your brand</h2>
+      <p class="hint">Saved in this browser. The AI tools use it, and you can leave any field empty.</p>
+      <label>Brand name <input type="text" id="b-name" maxlength="100"></label>
+      <label>Tone <input type="text" id="b-tone" maxlength="300" placeholder="e.g. warm, witty, premium"></label>
+      <label>What you offer <textarea id="b-offer" rows="3" maxlength="1000"></textarea></label>
+      <label>Target audience <textarea id="b-audience" rows="3" maxlength="1000"></textarea></label>
+      <div class="dialog-actions">
+        <button type="button" class="btn ghost" id="brand-cancel">Cancel</button>
+        <button type="submit" class="btn" value="save">Save brand</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
